@@ -1,0 +1,162 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+#content {
+
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(83, 98, 112, 0.712);
+    font-size: 18px;
+
+}
+
+#header{
+width: 100vw;
+height: 10vh;
+background-color: rgb(238, 206, 165);
+
+}
+
+#outer{
+    display: flex;
+    height: 90vh;
+    width: 100%;
+    background-color: cadetblue;
+    
+}
+
+#nav{
+    display: flex;
+    flex-direction: column;
+    justify-content:flex-start;
+    align-items: center;
+    background-color: rgb(30, 153, 210);
+    width: 14rem;
+}
+
+.navButtons {
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+    height: 2.5rem;
+    width: 10rem;
+
+}
+
+#inner{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    background-color: rgb(85, 179, 127);
+}
+
+.listItem {
+
+    display: flex;
+    flex-direction: row;
+    justify-content:flex-start;
+    align-items:center;
+    margin: 1rem;
+    margin-left: 5rem;
+    height: 4rem;
+    width: 70rem;
+    background-color: cyan;
+
+}
+
+.noteTitle{
+    display: flex;
+    justify-content: flex-start;
+    align-items:center;
+    margin: 1rem;
+    height: 3rem;
+    width: 45rem;
+    background-color: darkgrey;
+}
+
+.noteDate{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1rem;
+    height: 3rem;
+    width: 8rem;
+    background-color: darkgrey;
+
+}
+
+.notePriority {
+    margin: 1rem;
+    height: 3rem;
+    width: 3rem;
+    background-color: darkgrey;
+
+}
+
+.noteDelete {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1rem;
+    height: 3rem;
+    width: 8rem;
+    background-color: darkgrey;
+
+}
+
+#upperInner {
+    background-color: darksalmon;
+    
+
+}
+
+#lowerInner {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background-color: rgb(15, 75, 134);
+}
+
+#addNoteButton {
+    margin: 1rem;
+    margin-left: 5rem;
+    height: 2rem;
+    width: 70rem;
+}
+
+#additionForm {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin: 1rem;
+    margin-left: 5rem;
+    height: 4rem;
+    width: 70rem;
+    background-color: firebrick;
+}
+
+#submitButton {
+    height: 2rem;
+    width: 4rem;
+}
+
+.invisible{
+    visibility: hidden;
+}
+
+#title{
+    margin: 1rem;
+    height: 3rem;
+    width: 45rem;
+    
+
+}
+
+.deleteButton{
+    display: inline;
+    height: 3rem;
+    width: 8rem;
+
+}
