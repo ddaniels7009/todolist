@@ -1,29 +1,48 @@
+html {
+    background-color: rgb(167, 167, 167);
+}
+
 body {
     margin: 0;
     padding: 0;
+    font-family: 'Roboto', sans-serif;
 }
 
 #content {
-
-    height: 100vh;
-    width: 100vw;
-    background-color: rgba(83, 98, 112, 0.712);
-    font-size: 18px;
+    box-sizing: border-box;
+    height: fit-content;
+    background-color: rgb(167, 167, 167);
+    font-size: 15px;
+    
 
 }
 
 #header{
-width: 100vw;
-height: 10vh;
-background-color: rgb(238, 206, 165);
+    display:flex;
+    justify-content:flex-start;
+    border-bottom:solid;
+    border-color: rgb(96, 180, 206);
+    align-items: center;
+    width: 100%;
+    height: 10%;
+    background-color: rgb(70, 70, 70);
 
 }
 
+#pageName {
+    margin: 0;
+    margin-left: 1rem;
+    padding: 0;
+    font-size: 90px;
+    color: white;
+}
+
 #outer{
+    margin: 0;
+    padding: 0;
     display: flex;
-    height: 90vh;
-    width: 100%;
-    background-color: cadetblue;
+    height:fit-content;
+    background-color: rgb(167, 167, 167);
     
 }
 
@@ -32,8 +51,12 @@ background-color: rgb(238, 206, 165);
     flex-direction: column;
     justify-content:flex-start;
     align-items: center;
-    background-color: rgb(30, 153, 210);
+    background-color: rgb(212, 212, 212);
     width: 14rem;
+    
+    border-right: solid;
+    border-color: rgb(96, 180, 206);
+    
 }
 
 .navButtons {
@@ -47,8 +70,8 @@ background-color: rgb(238, 206, 165);
 #inner{
     display: flex;
     flex-direction: column;
-    height: 100%;
-    width: 100%;
+    height:93vh;
+    width: fit-content;
     background-color: rgb(85, 179, 127);
 }
 
@@ -62,7 +85,13 @@ background-color: rgb(238, 206, 165);
     margin-left: 5rem;
     height: 4rem;
     width: 70rem;
-    background-color: cyan;
+    background-color: rgb(96, 180, 206);
+    border-radius: 8px;
+
+}
+
+.lowPriority {
+    background-color: rgb(214, 76, 76);
 
 }
 
@@ -71,9 +100,11 @@ background-color: rgb(238, 206, 165);
     justify-content: flex-start;
     align-items:center;
     margin: 1rem;
+    padding-left: 1rem;
     height: 3rem;
     width: 45rem;
-    background-color: darkgrey;
+    color: white;
+    background-color: rgba(255, 255, 255, 0);
 }
 
 .noteDate{
@@ -81,17 +112,11 @@ background-color: rgb(238, 206, 165);
     justify-content: center;
     align-items: center;
     margin: 1rem;
+    margin-left: 0;
     height: 3rem;
     width: 8rem;
-    background-color: darkgrey;
-
-}
-
-.notePriority {
-    margin: 1rem;
-    height: 3rem;
-    width: 3rem;
-    background-color: darkgrey;
+    color: rgb(255, 255, 255);
+    background-color: rgba(255, 255, 255, 0);
 
 }
 
@@ -102,21 +127,51 @@ background-color: rgb(238, 206, 165);
     margin: 1rem;
     height: 3rem;
     width: 8rem;
-    background-color: darkgrey;
+    background-color: rgba(255, 255, 255, 0);
 
 }
 
 #upperInner {
-    background-color: darksalmon;
+    background-color: rgb(167, 167, 167);
     
 
+}
+
+#taskHeader{
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: flex-start;
+    align-items:flex-end;
+    background-color: rgba(116, 116, 116, 0);
+    margin: 0rem;
+    margin-left: 5rem;
+    height: 3rem;
+    width: 100%;
+    font-size: 1.5rem;
+    color: white;
+    text-shadow: 0px 0px 1px rgb(255, 255, 255);
+
+}
+
+#titleBar{
+    margin: 1rem;
+    margin-bottom: 0;
+}
+
+#dateBar {
+    padding: 0;
+    margin: 1rem;
+    margin-left: 39rem;
+    margin-bottom: 0;
 }
 
 #lowerInner {
     display: flex;
     flex-direction: column;
     height: 100%;
-    background-color: rgb(15, 75, 134);
+    width: 100%;
+    background-color: rgb(167, 167, 167);
 }
 
 #addNoteButton {
@@ -134,12 +189,15 @@ background-color: rgb(238, 206, 165);
     margin-left: 5rem;
     height: 4rem;
     width: 70rem;
-    background-color: firebrick;
+    background-color: rgba(255, 255, 255, 0);
 }
 
 #submitButton {
-    height: 2rem;
-    width: 4rem;
+    margin: 1rem;
+    margin-left: 1rem;
+    height: 3rem;
+    width: 8rem;
+    
 }
 
 .invisible{
@@ -148,8 +206,10 @@ background-color: rgb(238, 206, 165);
 
 #title{
     margin: 1rem;
+    margin-right: 1.7rem;
     height: 3rem;
     width: 45rem;
+
     
 
 }
@@ -158,5 +218,32 @@ background-color: rgb(238, 206, 165);
     display: inline;
     height: 3rem;
     width: 8rem;
+    border-radius: 5px;
+
+}
+
+button {
+    font-size: 1rem;
+    font-weight:lighter;
+    border: solid;
+    border-width: .1rem;
+    border-radius: 5px;
+    color: white;
+    border-color: rgb(255, 255, 255);
+    box-shadow: 0px 0px 5px rgb(255, 255, 255);
+    background-color: rgba(255, 255, 255, 0);
+    
+}
+button:hover {
+    cursor: pointer;
+}
+
+input {
+
+    border: solid;
+    border-width: .2rem;
+    border-color: rgb(255, 255, 255);
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px rgb(255, 255, 255);
 
 }

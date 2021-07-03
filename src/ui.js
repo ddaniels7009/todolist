@@ -40,7 +40,7 @@ const ui = (function () {
         titleInput.setAttribute("type", "text");
         titleInput.setAttribute("id", "title"); ///* update id
         titleInput.setAttribute("name", "title");
-        titleInput.setAttribute("value", "Task Name");
+        titleInput.setAttribute("value", "");
         //End
 
         //Begin
@@ -53,6 +53,7 @@ const ui = (function () {
         let authorInput = document.createElement("input");
         additionForm.appendChild(authorInput);
         authorInput.setAttribute("type", "date");
+       
         authorInput.setAttribute("id", "date");
         authorInput.setAttribute("name", "date");
         authorInput.setAttribute("value", "");
@@ -61,18 +62,18 @@ const ui = (function () {
         //Begin
         const submitButton = document.createElement('button');
         submitButton.setAttribute('id', 'submitButton');
-        submitButton.innerText = "Add"
+        submitButton.innerText = "add"
         additionForm.appendChild(submitButton);
 
 
         submitButton.addEventListener('click', function () {
-           noteList.addNote((document.getElementById("title").value),
+           
+            noteList.addNote((document.getElementById("title").value),
             document.getElementById("date").value);
-            console.log('working');
             additionForm.classList.toggle('invisible');
             populateContainer();
             resetFields();
-            
+           
         
         })
         //End
@@ -112,23 +113,23 @@ const ui = (function () {
         const noteContainer = document.createElement('div');
         const innerNote1 = document.createElement('div');
         const innerNote2 = document.createElement('div');
-        const innerNote3 = document.createElement('div');
+
         const innerNote4 = document.createElement('div');
         const deleteButton = document.createElement('button');
 
         noteContainer.classList.add('listItem');
-       
-        
+        noteContainer.addEventListener('click', function() { changePriority(noteContainer); })
+
         innerNote1.classList.add('noteTitle');
         innerNote2.classList.add('noteDate');
-        innerNote3.classList.add('notePriority');
+
         innerNote4.classList.add('noteDelete');
         
         
         defaultPageLoader.upperInnerContainer.appendChild(noteContainer);
         noteContainer.appendChild(innerNote1);
         noteContainer.appendChild(innerNote2);
-        noteContainer.appendChild(innerNote3);
+
         noteContainer.appendChild(innerNote4);
 
         // Format Delete Button
@@ -141,7 +142,7 @@ const ui = (function () {
 
         innerNote4.appendChild(deleteButton);
 
-        return noteContainer, innerNote1,innerNote2,innerNote3,innerNote4;
+        return noteContainer, innerNote1, innerNote2, innerNote4;
     }
 
     
@@ -152,6 +153,10 @@ const ui = (function () {
     }
 
     //function to change note priority
+    function changePriority(container) {
+        container.classList.toggle('lowPriority');
+
+    }
 
 return {startup, additionForm, submissionForm, populateContainer, myFunction, createNoteContainer, titleBars, dateBar, priorityBar, deleteBar, submissionForm }
 

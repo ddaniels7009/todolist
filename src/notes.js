@@ -1,6 +1,6 @@
 import { note, testNote } from './createNote';
 import { ui } from './ui'
-
+import { format } from 'date-fns';
 
 const noteList = (function () {
 
@@ -10,8 +10,17 @@ const noteList = (function () {
     // Function to add a note to the default array
     function addNote(title, date) {
 
-        defaultNoteArray.push(note(title, date));
+        if(title == ""){
+            title = "list Item";
+        }
 
+        if(date ==""){
+            date = format(new Date(), 'yyyy-MM-dd');
+        }
+        
+        defaultNoteArray.push(note(title, date));
+        
+        
     }
 
     // TODO create a function to delete a note from the array
@@ -26,14 +35,13 @@ const noteList = (function () {
         }
 
         let index = defaultNoteArray.indexOf(titleHolder);
-        console.log(index);
         defaultNoteArray.splice(index,1);
 
     }
 
 
     // Test addNote function
-    addNote('eat food', 1993);
+    addNote('Walk the dogs', "2021-06-03");
     
     return {defaultNoteArray, addNote, removeNoteFromArray}
 
