@@ -14,13 +14,14 @@ const ui = (function () {
 
     function startup() {
 
-        ui.populateContainer();
-        ui.submissionForm();
+        ui.populateContainer(noteList.defaultNoteArray);
+        ui.submissionForm(noteList.defaultNoteArray);
+
 
     }
 
     //function to add new list to the navbar using an add list button
-    function submissionForm () {
+    function submissionForm (arrayName) {
         
         //const additionForm = document.createElement('div');
         additionForm.setAttribute('id', 'additionForm');
@@ -69,27 +70,27 @@ const ui = (function () {
         submitButton.addEventListener('click', function () {
            
             noteList.addNote((document.getElementById("title").value),
-            document.getElementById("date").value);
+            (document.getElementById("date").value), (arrayName));
             additionForm.classList.toggle('invisible');
-            populateContainer();
+            populateContainer(arrayName);
             resetFields();
            
         
         })
         //End
 
-    
-        
     }
     
     // Function to add object to container elements
-    function populateContainer () {
+    function populateContainer (arrayName) {
+        
+        
         createNoteContainer();
-        noteList.defaultNoteArray.forEach(myFunction);
+        arrayName.forEach(setAttibutes);
 
     };
 
-    function myFunction (item, index, array) {
+    function setAttibutes (item, index, array) {
 
         ui.titleBars[index].innerText = item.getTitle();
         ui.dateBar[index].innerText = item.getDate();
@@ -113,8 +114,7 @@ const ui = (function () {
         const noteContainer = document.createElement('div');
         const innerNote1 = document.createElement('div');
         const innerNote2 = document.createElement('div');
-
-        const innerNote4 = document.createElement('div');
+        const innerNote3 = document.createElement('div');
         const deleteButton = document.createElement('button');
 
         noteContainer.classList.add('listItem');
@@ -122,15 +122,13 @@ const ui = (function () {
 
         innerNote1.classList.add('noteTitle');
         innerNote2.classList.add('noteDate');
-
-        innerNote4.classList.add('noteDelete');
+        innerNote3.classList.add('noteDelete');
         
         
         defaultPageLoader.upperInnerContainer.appendChild(noteContainer);
         noteContainer.appendChild(innerNote1);
         noteContainer.appendChild(innerNote2);
-
-        noteContainer.appendChild(innerNote4);
+        noteContainer.appendChild(innerNote3);
 
         // Format Delete Button
         deleteButton.classList.add('deleteButton');
@@ -140,9 +138,17 @@ const ui = (function () {
             noteList.removeNoteFromArray(innerNote1);
         });
 
-        innerNote4.appendChild(deleteButton);
+        innerNote3.appendChild(deleteButton);
 
-        return noteContainer, innerNote1, innerNote2, innerNote4;
+        return noteContainer, innerNote1, innerNote2, innerNote3;
+    }
+
+    // Function to delete all div content inside the "inner" div
+    function clearAll() {
+
+        defaultPageLoader.innerContainer.removeChild(document.getElementById('upperInner'));
+        defaultPageLoader.innerContainer.removeChild(document.getElementById('lowerInner'));
+
     }
 
     
@@ -158,7 +164,7 @@ const ui = (function () {
 
     }
 
-return {startup, additionForm, submissionForm, populateContainer, myFunction, createNoteContainer, titleBars, dateBar, priorityBar, deleteBar, submissionForm }
+return {startup, additionForm, clearAll, submissionForm, populateContainer, setAttibutes, createNoteContainer, titleBars, dateBar, priorityBar, deleteBar, submissionForm }
 
 
 

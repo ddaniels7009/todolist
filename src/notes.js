@@ -4,11 +4,13 @@ import { format } from 'date-fns';
 
 const noteList = (function () {
 
+    
     // Create default array
     const defaultNoteArray = [];
+    
 
     // Function to add a note to the default array
-    function addNote(title, date) {
+    function addNote(title, date, arrayName) {
 
         if(title == ""){
             title = "list Item";
@@ -18,7 +20,7 @@ const noteList = (function () {
             date = format(new Date(), 'yyyy-MM-dd');
         }
         
-        defaultNoteArray.push(note(title, date));
+        arrayName.push(note(title, date));
         
         
     }
@@ -40,8 +42,11 @@ const noteList = (function () {
     }
 
 
+    
+
+
     // Test addNote function
-    addNote('Walk the dogs', "2021-06-03");
+    addNote('Walk the dogs', "2021-06-03", defaultNoteArray);
     
     return {defaultNoteArray, addNote, removeNoteFromArray}
 
