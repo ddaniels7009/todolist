@@ -10,7 +10,7 @@ const navbar = (function() {
     primaryListBtn.classList.add('navButtons');
     primaryListBtn.innerText = "primary list"
     navUpper.appendChild(primaryListBtn);
-    primaryListBtn.addEventListener('click', function() {  });
+    primaryListBtn.addEventListener('click', function() { ui.clearAll(); ui.populateContainer(noteList.defaultNoteArray)});//ui.populateContainer(noteList.defaultNoteArray);});
 
     
     // Add new list button

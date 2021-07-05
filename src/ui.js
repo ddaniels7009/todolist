@@ -14,6 +14,7 @@ const ui = (function () {
 
     function startup() {
 
+
         ui.populateContainer(noteList.defaultNoteArray);
         ui.submissionForm(noteList.defaultNoteArray);
 
@@ -21,13 +22,13 @@ const ui = (function () {
     }
 
     //function to add new list to the navbar using an add list button
-    function submissionForm (arrayName) {
-        
+    function submissionForm(arrayName) {
+
         //const additionForm = document.createElement('div');
         additionForm.setAttribute('id', 'additionForm');
         defaultPageLoader.lowerInnerContainer.appendChild(additionForm);
         additionForm.classList.toggle('invisible');
-       
+
 
         //Begin
         let label1 = document.createElement("label");
@@ -54,7 +55,7 @@ const ui = (function () {
         let authorInput = document.createElement("input");
         additionForm.appendChild(authorInput);
         authorInput.setAttribute("type", "date");
-       
+
         authorInput.setAttribute("id", "date");
         authorInput.setAttribute("name", "date");
         authorInput.setAttribute("value", "");
@@ -68,30 +69,31 @@ const ui = (function () {
 
 
         submitButton.addEventListener('click', function () {
-           
+
             noteList.addNote((document.getElementById("title").value),
-            (document.getElementById("date").value), (arrayName));
+                (document.getElementById("date").value), (arrayName));
             additionForm.classList.toggle('invisible');
             populateContainer(arrayName);
             resetFields();
-           
-        
+
+
         })
         //End
 
     }
-    
+
     // Function to add object to container elements
-    function populateContainer (arrayName) {
-        
-        
+    function populateContainer(arrayName) {
+
+        console.log(arrayName[0]);
         createNoteContainer();
         arrayName.forEach(setAttibutes);
 
     };
 
-    function setAttibutes (item, index, array) {
+    function setAttibutes(item, index, array) {
 
+        console.log(ui.titleBars[index]);
         ui.titleBars[index].innerText = item.getTitle();
         ui.dateBar[index].innerText = item.getDate();
 
@@ -107,9 +109,9 @@ const ui = (function () {
     //function to remove projects from the nav bar
 
 
-    //funtion to create a new note/note container using object information
-    function createNoteContainer () {
 
+    //funtion to create a new note/note container using object information
+    function createNoteContainer() {
         //Create Note Container
         const noteContainer = document.createElement('div');
         const innerNote1 = document.createElement('div');
@@ -117,14 +119,17 @@ const ui = (function () {
         const innerNote3 = document.createElement('div');
         const deleteButton = document.createElement('button');
 
+
+
         noteContainer.classList.add('listItem');
-        noteContainer.addEventListener('click', function() { changePriority(noteContainer); })
+        noteContainer.addEventListener('click', function () { changePriority(noteContainer); })
+        console.log("note");
 
         innerNote1.classList.add('noteTitle');
         innerNote2.classList.add('noteDate');
         innerNote3.classList.add('noteDelete');
-        
-        
+
+
         defaultPageLoader.upperInnerContainer.appendChild(noteContainer);
         noteContainer.appendChild(innerNote1);
         noteContainer.appendChild(innerNote2);
@@ -133,7 +138,7 @@ const ui = (function () {
         // Format Delete Button
         deleteButton.classList.add('deleteButton');
         deleteButton.innerText = "delete";
-        deleteButton.addEventListener('click', function() { 
+        deleteButton.addEventListener('click', function () {
             deleteNoteContainer(noteContainer);
             noteList.removeNoteFromArray(innerNote1);
         });
@@ -146,12 +151,15 @@ const ui = (function () {
     // Function to delete all div content inside the "inner" div
     function clearAll() {
 
-        defaultPageLoader.innerContainer.removeChild(document.getElementById('upperInner'));
-        defaultPageLoader.innerContainer.removeChild(document.getElementById('lowerInner'));
+        let numNodes = defaultPageLoader.upperInnerContainer.childNodes.length;
+        
+        for (let i = numNodes-1; i > 0; i--) {
+            defaultPageLoader.upperInnerContainer.removeChild(defaultPageLoader.upperInnerContainer.childNodes[i]);
+        }
 
     }
 
-    
+
     //create a function to delete a note's container
     function deleteNoteContainer(noteContainer) {
         defaultPageLoader.upperInnerContainer.removeChild(noteContainer);
@@ -164,7 +172,7 @@ const ui = (function () {
 
     }
 
-return {startup, additionForm, clearAll, submissionForm, populateContainer, setAttibutes, createNoteContainer, titleBars, dateBar, priorityBar, deleteBar, submissionForm }
+    return { startup, submissionForm, additionForm, clearAll, submissionForm, populateContainer, setAttibutes, createNoteContainer, titleBars, dateBar, priorityBar, deleteBar, submissionForm }
 
 
 

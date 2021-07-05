@@ -5,39 +5,77 @@ const defaultPageLoader = (function () {
 
 
 
-
     // Create divs for default screen 
     const content = document.getElementById('content');
+
+
+    // Create Header Elements
     const header = document.createElement('div');
+    header.setAttribute('id', 'header');
     const pageName = document.createElement('p');
-    const outerContainer = document.createElement('div')
+    pageName.innerText = "LIST";
+    pageName.setAttribute('id', 'pageName');
+    content.appendChild(header);
+    header.appendChild(pageName);
+
 
     // Create Nav elements
     const nav = document.createElement('div');
     const navUpper = document.createElement('div');
     const navLower = document.createElement('div');
+    nav.setAttribute('id', 'nav');
+    navUpper.setAttribute('id', 'navUpper');
+    navLower.setAttribute('id', 'navLower');
 
-    // Create inner container elements
+    nav.appendChild(navUpper);
+    nav.appendChild(navLower);
+
+
+    // Create Outer Container
+    const outerContainer = document.createElement('div')
+    outerContainer.setAttribute('id', 'outer');
+    content.appendChild(outerContainer);
+    outerContainer.appendChild(nav);
+
+    // Create inner container
     const innerContainer = document.createElement('div');
+    innerContainer.setAttribute('id', 'inner');
+    outerContainer.appendChild(innerContainer);
+
+
+    //Create upperInnerContainer
     const upperInnerContainer = document.createElement('div');
+    upperInnerContainer.setAttribute('id', 'upperInner');
+    innerContainer.appendChild(upperInnerContainer);
+
+
+    //Create lowerInnerContainer
     const lowerInnerContainer = document.createElement('div');
+    lowerInnerContainer.setAttribute('id', 'lowerInner');
+    innerContainer.appendChild(lowerInnerContainer);
+
 
     const taskLineHeader = document.createElement('div');
     const titleBar = document.createElement('p');
     const dateBar = document.createElement('p');
-
+    taskLineHeader.setAttribute('id', 'taskHeader');
+    titleBar.setAttribute('id', 'titleBar');
+    dateBar.setAttribute('id', 'dateBar');
+    titleBar.innerText = "TASK NAME:";
+    dateBar.innerText = "DUE DATE:";
+    upperInnerContainer.appendChild(taskLineHeader);
+    taskLineHeader.appendChild(titleBar);
+    taskLineHeader.appendChild(dateBar);
 
     // Create Add Note Button
     const addNoteButton = document.createElement('button');
+    addNoteButton.setAttribute('id', 'addNoteButton');
+    addNoteButton.innerText = "Add New Note";
+    addNoteButton.addEventListener('click', function () {
 
-    //Set IDs for elements
-    nav.setAttribute('id', 'nav');
-    navUpper.setAttribute('id', 'navUpper');
-    navLower.setAttribute('id', 'navLower');
-    header.setAttribute('id', 'header');
-    pageName.setAttribute('id', 'pageName');
-    outerContainer.setAttribute('id', 'outer');
-    innerContainer.setAttribute('id', 'inner');
+        ui.additionForm.classList.toggle('invisible');
+    });
+    lowerInnerContainer.appendChild(addNoteButton);
 
     // Create form for adding new list items
     let listLabel = document.createElement("label");
@@ -56,49 +94,10 @@ const defaultPageLoader = (function () {
     //End
 
 
-    pageName.innerText = "LIST";
-
-    //Append all elements
-    content.appendChild(header);
-    header.appendChild(pageName);
-    content.appendChild(outerContainer);
-    outerContainer.appendChild(nav);
-    nav.appendChild(navUpper);
-    nav.appendChild(navLower);
-    outerContainer.appendChild(innerContainer);
 
 
 
-    lowerInnerContainer.setAttribute('id', 'lowerInner');
-    upperInnerContainer.setAttribute('id', 'upperInner');
-
-    taskLineHeader.setAttribute('id', 'taskHeader');
-    titleBar.setAttribute('id', 'titleBar');
-    dateBar.setAttribute('id', 'dateBar');
-
-    // Set add button ID
-    addNoteButton.setAttribute('id', 'addNoteButton');
-    addNoteButton.innerText = "Add New Note";
-    addNoteButton.addEventListener('click', function () { 
-
-        ui.additionForm.classList.toggle('invisible');
-    });
-
-    titleBar.innerText = "TASK NAME:";
-    dateBar.innerText = "DUE DATE:";
-
-    innerContainer.appendChild(upperInnerContainer);
-    innerContainer.appendChild(lowerInnerContainer);
-    upperInnerContainer.appendChild(taskLineHeader);
-    taskLineHeader.appendChild(titleBar);
-    taskLineHeader.appendChild(dateBar);
-
-    //Append add new note button to the lower-inner container
-    lowerInnerContainer.appendChild(addNoteButton);
-
-
-
-    return { upperInnerContainer, lowerInnerContainer, navUpper,navLower, listInput,listLabel, innerContainer }
+    return { upperInnerContainer, lowerInnerContainer, navUpper, navLower, innerContainer, listLabel, listInput}
 
 })();
 

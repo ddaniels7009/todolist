@@ -8,6 +8,9 @@ const noteList = (function () {
     // Create default array
     const defaultNoteArray = [];
     
+    //Create Test second array
+    const secondaryArray = [];
+
 
     // Function to add a note to the default array
     function addNote(title, date, arrayName) {
@@ -48,7 +51,10 @@ const noteList = (function () {
     // Test addNote function
     addNote('Walk the dogs', "2021-06-03", defaultNoteArray);
     
-    return {defaultNoteArray, addNote, removeNoteFromArray}
+    //Test Second array
+    addNote('Does this work', "2021-06-03", secondaryArray);
+    
+    return {secondaryArray, defaultNoteArray, addNote, removeNoteFromArray}
 
 })();
 
