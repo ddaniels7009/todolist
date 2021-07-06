@@ -1,5 +1,8 @@
 //import { format } from 'date-fns'
-import { defaultPageLoader } from './default'
+
+import { add } from 'date-fns';
+import { de } from 'date-fns/locale';
+import { defaultPageLoader } from './default';
 import { noteList } from './notes';
 
 // Module to control entire interface
@@ -10,6 +13,8 @@ const ui = (function () {
     const priorityBar = document.getElementsByClassName('notePriority');
     const deleteBar = document.getElementsByClassName('noteDelete');
     const additionForm = document.createElement('div');
+
+    const addNoteForm = document.createElement('form'); // Implement
 
 
     function startup() {
@@ -40,6 +45,7 @@ const ui = (function () {
         let titleInput = document.createElement("input");
         additionForm.appendChild(titleInput);
         titleInput.setAttribute("type", "text");
+        titleInput.setAttribute("required", "required");
         titleInput.setAttribute("id", "title"); ///* update id
         titleInput.setAttribute("name", "title");
         titleInput.setAttribute("value", "");
@@ -55,7 +61,7 @@ const ui = (function () {
         let authorInput = document.createElement("input");
         additionForm.appendChild(authorInput);
         authorInput.setAttribute("type", "date");
-
+        authorInput.setAttribute("required", "required");
         authorInput.setAttribute("id", "date");
         authorInput.setAttribute("name", "date");
         authorInput.setAttribute("value", "");
@@ -70,13 +76,12 @@ const ui = (function () {
 
         submitButton.addEventListener('click', function () {
 
-            noteList.addNote((document.getElementById("title").value),
-                (document.getElementById("date").value), (arrayName));
+            noteList.addNote((document.getElementById("title").value), (document.getElementById("date").value), arrayName);
             additionForm.classList.toggle('invisible');
             populateContainer(arrayName);
             resetFields();
 
-
+            return { additionForm };
         })
         //End
 
@@ -85,19 +90,24 @@ const ui = (function () {
     // Function to add object to container elements
     function populateContainer(arrayName) {
 
-        console.log(arrayName[0]);
-        createNoteContainer();
+
         arrayName.forEach(setAttibutes);
 
     };
 
     function setAttibutes(item, index, array) {
 
-        console.log(ui.titleBars[index]);
+
+        // Only creates a new note container if there are less note containers than there are elements in the array
+        if (defaultPageLoader.upperInnerContainer.childNodes.length - 1 < array.length) {
+            createNoteContainer(array);
+        }
+
         ui.titleBars[index].innerText = item.getTitle();
         ui.dateBar[index].innerText = item.getDate();
 
     };
+
 
     function resetFields() {
         document.getElementById("title").value = "";
@@ -106,29 +116,22 @@ const ui = (function () {
 
 
 
-    //function to remove projects from the nav bar
-
-
-
     //funtion to create a new note/note container using object information
-    function createNoteContainer() {
+    function createNoteContainer(arrayName) {
         //Create Note Container
+
         const noteContainer = document.createElement('div');
         const innerNote1 = document.createElement('div');
         const innerNote2 = document.createElement('div');
         const innerNote3 = document.createElement('div');
         const deleteButton = document.createElement('button');
 
-
-
         noteContainer.classList.add('listItem');
         noteContainer.addEventListener('click', function () { changePriority(noteContainer); })
-        console.log("note");
 
         innerNote1.classList.add('noteTitle');
         innerNote2.classList.add('noteDate');
         innerNote3.classList.add('noteDelete');
-
 
         defaultPageLoader.upperInnerContainer.appendChild(noteContainer);
         noteContainer.appendChild(innerNote1);
@@ -140,23 +143,31 @@ const ui = (function () {
         deleteButton.innerText = "delete";
         deleteButton.addEventListener('click', function () {
             deleteNoteContainer(noteContainer);
-            noteList.removeNoteFromArray(innerNote1);
+            noteList.removeNoteFromArray(innerNote1, arrayName);
         });
 
         innerNote3.appendChild(deleteButton);
 
+
         return noteContainer, innerNote1, innerNote2, innerNote3;
+
     }
 
     // Function to delete all div content inside the "inner" div
     function clearAll() {
 
-        let numNodes = defaultPageLoader.upperInnerContainer.childNodes.length;
+        let numNodes = defaultPageLoader.upperInnerContainer.childNodes.length - 1;
+        let numNodes2 = additionForm.childNodes.length - 1;
         
-        for (let i = numNodes-1; i > 0; i--) {
+
+        for (let i = numNodes; i > 0; i--) {
             defaultPageLoader.upperInnerContainer.removeChild(defaultPageLoader.upperInnerContainer.childNodes[i]);
         }
+        
 
+        for (let i = numNodes2; i >= 0; i--) {
+            additionForm.removeChild(additionForm.childNodes[i]);
+        }
     }
 
 
@@ -172,7 +183,7 @@ const ui = (function () {
 
     }
 
-    return { startup, submissionForm, additionForm, clearAll, submissionForm, populateContainer, setAttibutes, createNoteContainer, titleBars, dateBar, priorityBar, deleteBar, submissionForm }
+    return { startup, additionForm, clearAll, submissionForm, populateContainer, setAttibutes, createNoteContainer, titleBars, dateBar, priorityBar, deleteBar, submissionForm }
 
 
 

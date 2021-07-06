@@ -29,19 +29,24 @@ const noteList = (function () {
     }
 
     // TODO create a function to delete a note from the array
-    function removeNoteFromArray (innerNote1) {
+    function removeNoteFromArray (innerNote1, arrayName) {
         
         let titleHolder = "";
         
         for(let i = 0; i < defaultNoteArray.length; i++){
-            if(defaultNoteArray[i].title == innerNote1.innerText){
-                titleHolder = defaultNoteArray[i];
+            if(arrayName[i].title == innerNote1.innerText){
+                titleHolder = arrayName[i];
             }
         }
 
-        let index = defaultNoteArray.indexOf(titleHolder);
-        defaultNoteArray.splice(index,1);
+        let index = arrayName.indexOf(titleHolder);
+        arrayName.splice(index,1);
 
+    }
+
+    function createNewArray () {
+        const secondaryArray = [];
+        return secondaryArray;
     }
 
 
@@ -54,7 +59,7 @@ const noteList = (function () {
     //Test Second array
     addNote('Does this work', "2021-06-03", secondaryArray);
     
-    return {secondaryArray, defaultNoteArray, addNote, removeNoteFromArray}
+    return {secondaryArray, defaultNoteArray, addNote, removeNoteFromArray, createNewArray}
 
 })();
 

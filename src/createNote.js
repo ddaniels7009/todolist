@@ -8,7 +8,7 @@ const note = (title, date) => {
     const getDate = () => date;
     
 
-return {title, date, getTitle, getDate }
+return {title, date, getTitle, getDate}
 
 
 }

@@ -1,4 +1,4 @@
-import { defaultPageLoader } from './default'
+import { defaultPageLoader } from './default';
 import { noteList } from './notes';
 import { ui } from './ui';
 
@@ -10,8 +10,8 @@ const navbar = (function() {
     primaryListBtn.classList.add('navButtons');
     primaryListBtn.innerText = "primary list"
     navUpper.appendChild(primaryListBtn);
-    primaryListBtn.addEventListener('click', function() { ui.clearAll(); ui.populateContainer(noteList.defaultNoteArray)});//ui.populateContainer(noteList.defaultNoteArray);});
-
+    primaryListBtn.addEventListener('click', function() { ui.clearAll(); ui.populateContainer(noteList.defaultNoteArray); ui.submissionForm(noteList.defaultNoteArray);additionForm.classList.toggle('invisible'); });
+//ui.populateContainer(noteList.defaultNoteArray)
     
     // Add new list button
     const newListBtn = document.createElement('button');
@@ -49,7 +49,8 @@ const navbar = (function() {
         newButton.classList.add('navButtons');
         newButton.innerText = listName;
         defaultPageLoader.navUpper.appendChild(newButton);
-        newButton.addEventListener('click', function() { alert("Functionality not yet added") })//ui.clearAll();  })
+        const temp = noteList.createNewArray();
+        newButton.addEventListener('click', function() { ui.clearAll(); ui.populateContainer(temp); ui.submissionForm(temp); additionForm.classList.toggle('invisible'); })//ui.clearAll();  })
     }
 
     // Delete list buttons
