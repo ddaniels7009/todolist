@@ -6,9 +6,9 @@ const note = (title, date) => {
 
     const getTitle = () => title;
     const getDate = () => date;
-    
 
-return {title, date, getTitle, getDate}
+
+    return { title, date, getTitle, getDate }
 
 
 }

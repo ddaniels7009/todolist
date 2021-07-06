@@ -95,6 +95,7 @@ const ui = (function () {
 
     };
 
+    // Function to set title and date text for each note container
     function setAttibutes(item, index, array) {
 
 
@@ -108,7 +109,7 @@ const ui = (function () {
 
     };
 
-
+    // Function to clear form's fields after submission
     function resetFields() {
         document.getElementById("title").value = "";
         document.getElementById("date").value = "";
@@ -158,12 +159,12 @@ const ui = (function () {
 
         let numNodes = defaultPageLoader.upperInnerContainer.childNodes.length - 1;
         let numNodes2 = additionForm.childNodes.length - 1;
-        
+
 
         for (let i = numNodes; i > 0; i--) {
             defaultPageLoader.upperInnerContainer.removeChild(defaultPageLoader.upperInnerContainer.childNodes[i]);
         }
-        
+
 
         for (let i = numNodes2; i >= 0; i--) {
             additionForm.removeChild(additionForm.childNodes[i]);

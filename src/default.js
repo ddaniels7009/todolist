@@ -94,10 +94,7 @@ const defaultPageLoader = (function () {
     //End
 
 
-
-
-
-    return { upperInnerContainer, lowerInnerContainer, navUpper, navLower, innerContainer, listLabel, listInput}
+    return { upperInnerContainer, lowerInnerContainer, navUpper, navLower, innerContainer, listLabel, listInput }
 
 })();
 
