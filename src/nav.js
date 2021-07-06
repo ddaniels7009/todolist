@@ -11,6 +11,7 @@ const navbar = (function () {
     primaryListBtn.innerText = "primary list"
     navUpper.appendChild(primaryListBtn);
     primaryListBtn.addEventListener('click', function () { ui.clearAll(); ui.populateContainer(noteList.defaultNoteArray); ui.submissionForm(noteList.defaultNoteArray); additionForm.classList.toggle('invisible'); });
+    let listCount = 1;
 
 
     // Add new list button
@@ -44,7 +45,14 @@ const navbar = (function () {
 
     // Create function to add new list item to the navbar
     function newListButton(listName) {
-
+        
+        if(listName === ""){
+            listName = "list " + listCount; 
+            listCount++;
+        }
+        else{
+            listCount++;
+        }
         let newButton = document.createElement('button');
         newButton.classList.add('navButtons');
         newButton.innerText = listName;

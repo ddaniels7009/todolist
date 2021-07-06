@@ -45,10 +45,11 @@ const ui = (function () {
         let titleInput = document.createElement("input");
         additionForm.appendChild(titleInput);
         titleInput.setAttribute("type", "text");
-        titleInput.setAttribute("required", "required");
+        
         titleInput.setAttribute("id", "title"); ///* update id
         titleInput.setAttribute("name", "title");
         titleInput.setAttribute("value", "");
+        document.getElementById('title').required = true;
         //End
 
         //Begin
@@ -65,6 +66,7 @@ const ui = (function () {
         authorInput.setAttribute("id", "date");
         authorInput.setAttribute("name", "date");
         authorInput.setAttribute("value", "");
+        document.getElementById('date').required = true;
         //End
 
         //Begin
